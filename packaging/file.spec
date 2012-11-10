@@ -93,7 +93,7 @@ unset LD_LIBRARY_PATH
 %files -n libmagic-data
 %defattr (644,root,root,755)
 %config(noreplace) %{_sysconfdir}/magic
-%{_miscdir}/magic
+#%{_miscdir}/magic
 %{_miscdir}/magic.mgc
 %doc %{_mandir}/man5/magic.5.gz
 

@@ -10,7 +10,6 @@ Release:        0
 Summary:        Python module to use libmagic
 License:        BSD-3-Clause and BSD-4-Clause
 Group:          Development/Languages/Python
-%py_requires
 Source99:       file.spec
 %{expand:%(sed -n -e '/^Source:/,/^BuildRoot:/p' <%_sourcedir/file.spec)}
 %global         _sysconfdir /etc

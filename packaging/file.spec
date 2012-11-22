@@ -1,4 +1,5 @@
 Name:           file
+%define build_python_bindings 0
 BuildRequires:  findutils
 BuildRequires:  libtool
 BuildRequires:  zlib-devel

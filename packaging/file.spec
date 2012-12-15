@@ -12,6 +12,7 @@ Source:         ftp://ftp.astron.com/pub/file/file-%{version}.tar.gz
 Source2:        baselibs.conf
 %global         _sysconfdir /etc
 %global         _miscdir    %{_datadir}/misc
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
 With the file command, you can obtain information on the file type of a

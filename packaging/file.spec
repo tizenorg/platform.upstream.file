@@ -7,7 +7,7 @@ Version:        5.11
 Release:        0
 Summary:        A Tool to Determine File Types
 License:        BSD-2-Clause
-Group:          Productivity/File utilities
+Group:          System/Base
 Source:         ftp://ftp.astron.com/pub/file/file-%{version}.tar.gz
 Source2:        baselibs.conf
 %global         _sysconfdir /etc
@@ -22,7 +22,7 @@ used by apsfilter to permit automatic printing of different file types.
 
 %package -n libmagic-data
 Summary:        The magic files for libmagic to use
-Group:          Development/Libraries/Other
+Group:          System/Libraries
 
 %description -n libmagic-data
 This package contains the basic magic files that libmagic reads and uses
@@ -30,7 +30,7 @@ to estimate a file's type.
 
 %package -n libmagic
 Summary:        Library with file's functionality
-Group:          Development/Libraries/Other
+Group:          System/Libraries
 Requires:       libmagic-data = %{version}
 Provides:	libfile
 Obsoletes:	libfile =< 5.04
@@ -40,7 +40,7 @@ This library reads magic files and detects file types. Used by file command
 
 %package     -n file-devel
 Summary:        Include Files and Libraries mandatory for Development
-Group:          Development/Libraries/Other
+Group:          Development/Libraries
 Provides:       file:/usr/include/magic.h
 Requires:       glibc-devel
 Requires:       libmagic = %{version}
@@ -89,6 +89,7 @@ unset LD_LIBRARY_PATH
 
 %files -n libmagic
 %defattr (644,root,root,755)
+%license COPYING 
 %{_libdir}/lib*.so.*
 
 %files -n libmagic-data
@@ -103,13 +104,13 @@ unset LD_LIBRARY_PATH
 %{nil %{_bindir}/dcore}
 %attr(755,root,root) %{_bindir}/file
 %doc %{_mandir}/man1/file.1.gz
-%doc COPYING 
+%license COPYING 
 
 %files -n file-devel
 %defattr (644,root,root,755)
 %{_libdir}/lib*.so
 %{_includedir}/magic.h
 %doc %{_mandir}/man3/libmagic.3.gz
-%doc README COPYING
+%license COPYING
 
 %changelog

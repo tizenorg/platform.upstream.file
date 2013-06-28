@@ -10,6 +10,7 @@ License:        BSD-2-Clause
 Group:          System/Base
 Source:         ftp://ftp.astron.com/pub/file/file-%{version}.tar.gz
 Source2:        baselibs.conf
+Source1001: 	file.manifest
 %global         _sysconfdir /etc
 %global         _miscdir    %{_datadir}/misc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -51,6 +52,7 @@ to develop applications that require the magic "file" interface.
 
 %prep
 %setup -q -n file-%{version}
+cp %{SOURCE1001} .
 %build
 export LANG=POSIX
 export LC_ALL=POSIX
@@ -88,11 +90,13 @@ unset LD_LIBRARY_PATH
 %postun -n libmagic -p /sbin/ldconfig
 
 %files -n libmagic
+%manifest %{name}.manifest
 %defattr (644,root,root,755)
 %license COPYING 
 %{_libdir}/lib*.so.*
 
 %files -n libmagic-data
+%manifest %{name}.manifest
 %defattr (644,root,root,755)
 %config(noreplace) %{_sysconfdir}/magic
 #%{_miscdir}/magic
@@ -100,6 +104,7 @@ unset LD_LIBRARY_PATH
 %doc %{_mandir}/man5/magic.5.gz
 
 %files
+%manifest %{name}.manifest
 %defattr (644,root,root,755)
 %{nil %{_bindir}/dcore}
 %attr(755,root,root) %{_bindir}/file
@@ -107,6 +112,7 @@ unset LD_LIBRARY_PATH
 %license COPYING 
 
 %files -n file-devel
+%manifest %{name}.manifest
 %defattr (644,root,root,755)
 %{_libdir}/lib*.so
 %{_includedir}/magic.h

@@ -8,9 +8,12 @@ Release:        0
 Summary:        A Tool to Determine File Types
 License:        BSD-2-Clause
 Group:          System/Base
-Source:         ftp://ftp.astron.com/pub/file/file-%{version}.tar.gz
+
+### SOURCES BEGIN ###
 Source2:        baselibs.conf
 Source1001: 	file.manifest
+### SOURCES END ###
+Source:         ftp://ftp.astron.com/pub/file/file-%{version}.tar.gz
 %global         _sysconfdir /etc
 %global         _miscdir    %{_datadir}/misc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -52,8 +55,12 @@ to develop applications that require the magic "file" interface.
 
 %prep
 %setup -q -n file-%{version}
+### PREP BEGIN ###
 cp %{SOURCE1001} .
+### PREP END ###
+
 %build
+### BUILD BEGIN ###
 export LANG=POSIX
 export LC_ALL=POSIX
 rm -f Magdir/*,v Magdir/*~
@@ -67,6 +74,7 @@ pushd python
 python setup.py build
 popd
 %endif
+### BUILD END ###
 
 %install
 export LANG=POSIX

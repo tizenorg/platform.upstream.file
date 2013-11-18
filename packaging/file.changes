@@ -1,3 +1,9 @@
+* Wed Nov 6 2013 Ronan Le Martret <ronan@fridu.net> 7d17da5
+- Fix python-magic build. (PTREL-158)
+
+* Sat Jun 29 2013 Alexandru Cornea <alexandru.cornea@intel.com> 4795cb8
+- resetting manifest requested domain to floor
+
 * Sun Mar 17 2013 Anas Nashif <anas.nashif@intel.com> submit/trunk/20121215.172437@b91fca2
 - Update package groups
 

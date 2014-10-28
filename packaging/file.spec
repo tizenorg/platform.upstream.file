@@ -1,3 +1,5 @@
+%global         _miscdir    %{_datadir}/misc
+
 Name:           file
 BuildRequires:  findutils
 BuildRequires:  libtool
@@ -7,16 +9,13 @@ Version:        5.18
 Release:        0
 Summary:        A Tool to Determine File Types
 License:        BSD-2-Clause
-Group:          System/Base
+Group:          System/Utilities
 
 ### SOURCES BEGIN ###
 Source2:        baselibs.conf
-Source1001: 	file.manifest
+Source1001:     file.manifest
 ### SOURCES END ###
 Source:         ftp://ftp.astron.com/pub/file/file-%{version}.tar.gz
-%global         _sysconfdir /etc
-%global         _miscdir    %{_datadir}/misc
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
 With the file command, you can obtain information on the file type of a
@@ -36,15 +35,15 @@ to estimate a file's type.
 Summary:        Library with file's functionality
 Group:          System/Libraries
 Requires:       libmagic-data = %{version}
-Provides:	libfile
-Obsoletes:	libfile =< 5.04
+Provides:       libfile
+Obsoletes:      libfile =< 5.04
 
 %description -n libmagic
 This library reads magic files and detects file types. Used by file command
 
-%package     -n file-devel
+%package -n file-devel
 Summary:        Include Files and Libraries mandatory for Development
-Group:          Development/Libraries
+Group:          System/Libraries
 Provides:       file:/usr/include/magic.h
 Requires:       glibc-devel
 Requires:       libmagic = %{version}
@@ -79,17 +78,17 @@ popd
 %install
 export LANG=POSIX
 export LC_ALL=POSIX
-mkdir  %{buildroot}/etc
+mkdir  %{buildroot}%{_sysconfdir}
 make DESTDIR=%{buildroot} install pkgdatadir='$(datadir)'
 rm -vf %{buildroot}%{_sysconfdir}/magic
 echo '# Localstuff: file(1) magic(5) for locally observed files' > %{buildroot}%{_sysconfdir}/magic
-echo '#     global magic file is %{_miscdir}/magic(.mgc)'	>> %{buildroot}%{_sysconfdir}/magic
+echo '#     global magic file is %{_miscdir}/magic(.mgc)'   >> %{buildroot}%{_sysconfdir}/magic
 %{nil install -s dcore %{buildroot}%{_bindir}}
 # Check out that the binary does not bail out:
 LD_LIBRARY_PATH=%{buildroot}%{_libdir}
 export LD_LIBRARY_PATH
 find %{buildroot}%{_bindir}/file %{_bindir}/ /%{_lib}/ %{_libdir}/ | \
-	xargs %{buildroot}%{_bindir}/file -m %{buildroot}%{_miscdir}/magic
+    xargs %{buildroot}%{_bindir}/file -m %{buildroot}%{_miscdir}/magic
 unset LD_LIBRARY_PATH
 %{__rm} -f %{buildroot}%{_libdir}/*.la
 
@@ -107,7 +106,7 @@ unset LD_LIBRARY_PATH
 %manifest %{name}.manifest
 %defattr (644,root,root,755)
 %config(noreplace) %{_sysconfdir}/magic
-#%{_miscdir}/magic
+#%%{_miscdir}/magic
 %{_miscdir}/magic.mgc
 %doc %{_mandir}/man5/magic.5.gz
 
@@ -126,5 +125,3 @@ unset LD_LIBRARY_PATH
 %{_includedir}/magic.h
 %doc %{_mandir}/man3/libmagic.3.gz
 %license COPYING
-
-%changelog

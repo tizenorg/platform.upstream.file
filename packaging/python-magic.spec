@@ -1,5 +1,7 @@
-Name:           python-magic
 %define build_python_bindings 1
+%global         _miscdir    %{_datadir}/misc
+
+Name:           python-magic
 BuildRequires:  findutils
 BuildRequires:  libtool
 BuildRequires:  python-devel
@@ -9,15 +11,12 @@ Version:        5.18
 Release:        0
 Summary:        Python module to use libmagic
 License:        BSD-3-Clause and BSD-4-Clause
-Group:          Development/Languages/Python
+Group:          Platform Development/Python
 Source99:       file.spec
+BuildArch:      noarch
 
 %{expand:%(sed -n -e '/^### SOURCES BEGIN ###/,/^### SOURCES END ###/p' <%_sourcedir/file.spec)}
 Source:         ftp://ftp.astron.com/pub/file/file-%{version}.tar.gz
-
-%global         _miscdir    %{_datadir}/misc
-%global         _sysconfdir /etc
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description 
 This package contains the python binding that require the magic "file"
@@ -33,12 +32,11 @@ interface.
 
 %install
 pushd python
-python setup.py install --root=%{buildroot}	\
-			--prefix=%{_prefix}	\
-			--record-rpm=../python_files
+python setup.py install --root=%{buildroot} \
+                        --prefix=%{_prefix} \
+                        --record-rpm=../python_files
 popd
 
 %files -f python_files
 %defattr(-,root,root)
 
-%changelog

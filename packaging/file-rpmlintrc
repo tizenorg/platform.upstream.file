@@ -1,0 +1,4 @@
+addFilter(".*Warning:.*using.*regular.*magic.*file.*/usr/share/misc/magic.*")
+addFilter(".*E:.*shlib-fixed-dependency.*")
+addFilter(".*W:.*no-dependency-on.*")
+addFilter(".*W:.*name-repeated-in-summary.*")

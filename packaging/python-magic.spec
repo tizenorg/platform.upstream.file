@@ -7,7 +7,7 @@ BuildRequires:  libtool
 BuildRequires:  python-devel
 BuildRequires:  zlib-devel
 Url:            http://www.darwinsys.com/file/
-Version:        5.18
+Version:        5.20
 Release:        0
 Summary:        Python module to use libmagic
 License:        BSD-3-Clause and BSD-4-Clause

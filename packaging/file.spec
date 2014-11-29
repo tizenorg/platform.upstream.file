@@ -5,7 +5,7 @@ BuildRequires:  findutils
 BuildRequires:  libtool
 BuildRequires:  zlib-devel
 Url:            http://www.darwinsys.com/file/
-Version:        5.18
+Version:        5.20
 Release:        0
 Summary:        A Tool to Determine File Types
 License:        BSD-2-Clause
@@ -13,6 +13,7 @@ Group:          System/Utilities
 
 ### SOURCES BEGIN ###
 Source2:        baselibs.conf
+Source3:        file-rpmlintrc
 Source1001:     file.manifest
 ### SOURCES END ###
 Source:         ftp://ftp.astron.com/pub/file/file-%{version}.tar.gz
@@ -106,7 +107,7 @@ unset LD_LIBRARY_PATH
 %manifest %{name}.manifest
 %defattr (644,root,root,755)
 %config(noreplace) %{_sysconfdir}/magic
-#%%{_miscdir}/magic
+#%{_miscdir}/magic
 %{_miscdir}/magic.mgc
 %doc %{_mandir}/man5/magic.5.gz
 

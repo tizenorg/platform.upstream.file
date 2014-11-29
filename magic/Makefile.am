@@ -1,5 +1,5 @@
 #
-# $File: Makefile.am,v 1.96 2014/03/07 17:25:17 christos Exp $
+# $File: Makefile.am,v 1.99 2014/08/04 06:26:16 christos Exp $
 #
 MAGIC_FRAGMENT_BASE = Magdir
 MAGIC_DIR = $(top_srcdir)/magic
@@ -133,6 +133,7 @@ $(MAGIC_FRAGMENT_DIR)/macintosh \
 $(MAGIC_FRAGMENT_DIR)/magic \
 $(MAGIC_FRAGMENT_DIR)/mail.news \
 $(MAGIC_FRAGMENT_DIR)/make \
+$(MAGIC_FRAGMENT_DIR)/map \
 $(MAGIC_FRAGMENT_DIR)/maple \
 $(MAGIC_FRAGMENT_DIR)/marc21 \
 $(MAGIC_FRAGMENT_DIR)/mathcad \
@@ -141,6 +142,7 @@ $(MAGIC_FRAGMENT_DIR)/matroska \
 $(MAGIC_FRAGMENT_DIR)/mcrypt \
 $(MAGIC_FRAGMENT_DIR)/mercurial \
 $(MAGIC_FRAGMENT_DIR)/metastore \
+$(MAGIC_FRAGMENT_DIR)/meteorological \
 $(MAGIC_FRAGMENT_DIR)/mime \
 $(MAGIC_FRAGMENT_DIR)/mips \
 $(MAGIC_FRAGMENT_DIR)/mirage \
@@ -197,7 +199,6 @@ $(MAGIC_FRAGMENT_DIR)/pyramid \
 $(MAGIC_FRAGMENT_DIR)/python \
 $(MAGIC_FRAGMENT_DIR)/revision \
 $(MAGIC_FRAGMENT_DIR)/riff \
-$(MAGIC_FRAGMENT_DIR)/rinex \
 $(MAGIC_FRAGMENT_DIR)/rpm \
 $(MAGIC_FRAGMENT_DIR)/rtf \
 $(MAGIC_FRAGMENT_DIR)/ruby \
@@ -208,6 +209,7 @@ $(MAGIC_FRAGMENT_DIR)/securitycerts \
 $(MAGIC_FRAGMENT_DIR)/selinux \
 $(MAGIC_FRAGMENT_DIR)/sendmail \
 $(MAGIC_FRAGMENT_DIR)/sequent \
+$(MAGIC_FRAGMENT_DIR)/sereal \
 $(MAGIC_FRAGMENT_DIR)/sgi \
 $(MAGIC_FRAGMENT_DIR)/sgml \
 $(MAGIC_FRAGMENT_DIR)/sharc \

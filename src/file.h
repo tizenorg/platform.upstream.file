@@ -27,7 +27,7 @@
  */
 /*
  * file.h - definitions for file(1) program
- * @(#)$File: file.h,v 1.149 2014/03/15 21:47:40 christos Exp $
+ * @(#)$File: file.h,v 1.154 2014/09/10 18:41:51 christos Exp $
  */
 
 #ifndef __file_h__
@@ -83,7 +83,7 @@
 
 #define private static
 
-#if HAVE_VISIBILITY
+#if HAVE_VISIBILITY && !defined(WIN32)
 #define public  __attribute__ ((__visibility__("default")))
 #ifndef protected
 #define protected __attribute__ ((__visibility__("hidden")))
@@ -133,7 +133,7 @@
 #define MAXstring 64		/* max len of "string" types */
 
 #define MAGICNO		0xF11E041C
-#define VERSIONNO	11
+#define VERSIONNO	12
 #define FILE_MAGICSIZE	248
 
 #define	FILE_LOAD	0
@@ -321,6 +321,7 @@ struct magic {
 #define PSTRING_2_LE				BIT(9)
 #define PSTRING_4_BE				BIT(10)
 #define PSTRING_4_LE				BIT(11)
+#define REGEX_LINE_COUNT			BIT(11)
 #define PSTRING_LEN	\
     (PSTRING_1_BE|PSTRING_2_LE|PSTRING_2_BE|PSTRING_4_LE|PSTRING_4_BE)
 #define PSTRING_LENGTH_INCLUDES_ITSELF		BIT(12)
@@ -441,6 +442,8 @@ protected int file_is_tar(struct magic_set *, const unsigned char *, size_t);
 protected int file_softmagic(struct magic_set *, const unsigned char *, size_t,
     size_t, int, int);
 protected int file_apprentice(struct magic_set *, const char *, int);
+protected int buffer_apprentice(struct magic_set *, struct magic **,
+    size_t *, size_t);
 protected int file_magicfind(struct magic_set *, const char *, struct mlist *);
 protected uint64_t file_signextend(struct magic_set *, struct magic *,
     uint64_t);
@@ -468,6 +471,26 @@ protected int file_os2_apptype(struct magic_set *, const char *, const void *,
     size_t);
 #endif /* __EMX__ */
 
+#if defined(HAVE_LOCALE_H)
+#include <locale.h>
+#endif
+
+typedef struct {
+	const char *pat;
+#if defined(HAVE_NEWLOCALE) && defined(HAVE_USELOCALE) && defined(HAVE_FREELOCALE)
+#define USE_C_LOCALE
+	locale_t old_lc_ctype;
+	locale_t c_lc_ctype;
+#endif
+	int rc;
+	regex_t rx;
+} file_regex_t;
+
+protected int file_regcomp(file_regex_t *, const char *, int);
+protected int file_regexec(file_regex_t *, const char *, size_t, regmatch_t *,
+    int);
+protected void file_regfree(file_regex_t *);
+protected void file_regerror(file_regex_t *, int, struct magic_set *);
 
 #ifndef COMPILE_ONLY
 extern const char *file_names[];

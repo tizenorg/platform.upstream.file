@@ -1,5 +1,5 @@
-.\" $File: magic.man,v 1.81 2014/03/08 17:28:08 christos Exp $
-.Dd April 22, 2013
+.\" $File: magic.man,v 1.84 2014/06/03 19:01:34 christos Exp $
+.Dd June 3, 2014
 .Dt MAGIC __FSECTION__
 .Os
 .\" install as magic.4 on USG, magic.5 on V7, Berkeley and Linux systems.
@@ -228,19 +228,25 @@ Regular expressions can take exponential time to process, and their
 performance is hard to predict, so their use is discouraged.
 When used in production environments, their performance
 should be carefully checked.
-The type specification can be optionally followed by
-.Dv /[c][s] .
+The size of the string to search should also be limited by specifying
+.Dv /<length> ,
+to avoid performance issues scanning long files.
+The type specification can also be optionally followed by
+.Dv /[c][s][l] .
 The
 .Dq c
 flag makes the match case insensitive, while the
 .Dq s
 flag update the offset to the start offset of the match, rather than the end.
-The regular expression is tested against line
-.Dv N + 1
-onwards, where
-.Dv N
-is the given offset.
-Line endings are assumed to be in the machine's native format.
+The
+.Dq l
+modifier, changes the limit of length to mean number of lines instead of a
+byte count.
+Lines are delimited by the platforms native line delimiter.
+When a line count is specified, an implicit byte count also computed assuming
+each line is 80 characters long.
+If neither a byte or line count is specified, the search is limited automatically
+to 8KiB.
 .Dv ^
 and
 .Dv $
@@ -408,6 +414,9 @@ is decimal,
 is octal, and
 .Dv 0x13
 is hexadecimal.
+.Pp
+Numeric operations are not performed on date types, instead the numeric
+value is interpreted as an offset.
 .Pp
 For string values, the string from the
 file must match the specified string.

@@ -8,7 +8,7 @@ Url:            http://www.darwinsys.com/file/
 Version:        5.18
 Release:        0
 Summary:        A Tool to Determine File Types
-License:        BSD-2-Clause
+License:        BSD-2.0
 Group:          System/Utilities
 
 ### SOURCES BEGIN ###

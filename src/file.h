@@ -371,7 +371,7 @@ struct level_info {
 
 #define MAGIC_SETS	2
 
-struct magic_set {
+struct __attribute__ ((visibility ("default"))) magic_set {
 	struct mlist *mlist[MAGIC_SETS];	/* list of regular entries */
 	struct cont {
 		size_t len;

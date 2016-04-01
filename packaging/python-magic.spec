@@ -28,6 +28,9 @@ interface.
 %{expand:%(sed -n -e '/^### PREP BEGIN ###/,/^### PREP END ###/p' <%_sourcedir/file.spec)}
 
 %build
+export CFLAGS+=" -fvisibility=hidden"
+  export CXXFLAGS+=" -fvisibility=hidden"
+  
 %{expand:%(sed -n -e '/^### BUILD BEGIN ###/,/^### BUILD END ###/p' <%_sourcedir/file.spec)}
 
 %install

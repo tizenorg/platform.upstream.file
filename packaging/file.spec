@@ -59,6 +59,9 @@ cp %{SOURCE1001} .
 ### PREP END ###
 
 %build
+export CFLAGS+=" -fvisibility=hidden"
+  export CXXFLAGS+=" -fvisibility=hidden"
+  
 ### BUILD BEGIN ###
 export LANG=POSIX
 export LC_ALL=POSIX

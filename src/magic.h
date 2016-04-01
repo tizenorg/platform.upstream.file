@@ -83,23 +83,23 @@ extern "C" {
 #endif
 
 typedef struct magic_set *magic_t;
-magic_t magic_open(int);
-void magic_close(magic_t);
+__attribute__ ((visibility ("default"))) magic_t magic_open(int);
+__attribute__ ((visibility ("default"))) void magic_close(magic_t);
 
-const char *magic_getpath(const char *, int);
-const char *magic_file(magic_t, const char *);
-const char *magic_descriptor(magic_t, int);
-const char *magic_buffer(magic_t, const void *, size_t);
+__attribute__ ((visibility ("default"))) const char *magic_getpath(const char *, int);
+__attribute__ ((visibility ("default"))) const char *magic_file(magic_t, const char *);
+__attribute__ ((visibility ("default"))) const char *magic_descriptor(magic_t, int);
+__attribute__ ((visibility ("default"))) const char *magic_buffer(magic_t, const void *, size_t);
 
-const char *magic_error(magic_t);
-int magic_setflags(magic_t, int);
+__attribute__ ((visibility ("default"))) const char *magic_error(magic_t);
+__attribute__ ((visibility ("default"))) int magic_setflags(magic_t, int);
 
-int magic_version(void);
-int magic_load(magic_t, const char *);
-int magic_compile(magic_t, const char *);
-int magic_check(magic_t, const char *);
-int magic_list(magic_t, const char *);
-int magic_errno(magic_t);
+__attribute__ ((visibility ("default"))) int magic_version(void);
+__attribute__ ((visibility ("default"))) int magic_load(magic_t, const char *);
+__attribute__ ((visibility ("default"))) int magic_compile(magic_t, const char *);
+__attribute__ ((visibility ("default"))) int magic_check(magic_t, const char *);
+__attribute__ ((visibility ("default"))) int magic_list(magic_t, const char *);
+__attribute__ ((visibility ("default"))) int magic_errno(magic_t);
 
 #ifdef __cplusplus
 };

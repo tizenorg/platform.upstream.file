@@ -69,6 +69,8 @@ rm -f Magdir/*,v Magdir/*~
 rm -f ltcf-c.sh ltconfig ltmain.sh
 autoreconf -fiv
 CFLAGS="$RPM_OPT_FLAGS -DHOWMANY=69632"
+export CFLAGS+=" -fvisibility=hidden"
+  export CXXFLAGS+=" -fvisibility=hidden"
 %configure --disable-silent-rules --datadir=%{_miscdir} --disable-static --with-pic --enable-fsect-man5
 %{__make} %{?_smp_mflags} pkgdatadir='$(datadir)'
 %if 0%{?build_python_bindings:1}

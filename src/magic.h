@@ -77,29 +77,32 @@
 
 #define MAGIC_VERSION		517	/* This implementation */
 
+#ifndef LIBMAGIC_EXPORT_API
+#define LIBMAGIC_EXPORT_API extern
+#endif
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef struct magic_set *magic_t;
-magic_t magic_open(int);
-void magic_close(magic_t);
+LIBMAGIC_EXPORT_API magic_t magic_open(int);
+LIBMAGIC_EXPORT_API void magic_close(magic_t);
 
-const char *magic_getpath(const char *, int);
-const char *magic_file(magic_t, const char *);
-const char *magic_descriptor(magic_t, int);
-const char *magic_buffer(magic_t, const void *, size_t);
+LIBMAGIC_EXPORT_API const char *magic_getpath(const char *, int);
+LIBMAGIC_EXPORT_API const char *magic_file(magic_t, const char *);
+LIBMAGIC_EXPORT_API const char *magic_descriptor(magic_t, int);
+LIBMAGIC_EXPORT_API const char *magic_buffer(magic_t, const void *, size_t);
 
-const char *magic_error(magic_t);
-int magic_setflags(magic_t, int);
+LIBMAGIC_EXPORT_API const char *magic_error(magic_t);
+LIBMAGIC_EXPORT_API int magic_setflags(magic_t, int);
 
-int magic_version(void);
-int magic_load(magic_t, const char *);
-int magic_compile(magic_t, const char *);
-int magic_check(magic_t, const char *);
-int magic_list(magic_t, const char *);
-int magic_errno(magic_t);
+LIBMAGIC_EXPORT_API int magic_version(void);
+LIBMAGIC_EXPORT_API int magic_load(magic_t, const char *);
+LIBMAGIC_EXPORT_API int magic_compile(magic_t, const char *);
+LIBMAGIC_EXPORT_API int magic_check(magic_t, const char *);
+LIBMAGIC_EXPORT_API int magic_list(magic_t, const char *);
+LIBMAGIC_EXPORT_API int magic_errno(magic_t);
 
 #ifdef __cplusplus
 };

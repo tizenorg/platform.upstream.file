@@ -27,7 +27,7 @@
 #include "file.h"
 
 #ifndef lint
-FILE_RCSID("@(#)$File: readelf.c,v 1.119 2015/04/09 20:01:41 christos Exp $")
+FILE_RCSID("@(#)$File: readelf.c,v 1.121 2015/07/11 14:41:37 christos Exp $")
 #endif
 
 #ifdef BUILTIN_ELF
@@ -1052,11 +1052,14 @@ doshn(struct magic_set *ms, int clazz, int swap, int fd, off_t off, int num,
 		/* Things we can determine when we seek */
 		switch (xsh_type) {
 		case SHT_NOTE:
-			if (xsh_size + xsh_offset > (uintmax_t)fsize)  {
+			if ((uintmax_t)(xsh_size + xsh_offset) >
+			    (uintmax_t)fsize) {
 				if (file_printf(ms,
-				    ", note offset/size 0x%jx+0x%jx exceeds"
-				    " file size 0x%jx", (uintmax_t)xsh_offset,
-				    (uintmax_t)xsh_size, (uintmax_t)fsize) == -1)
+				    ", note offset/size 0x%" INTMAX_T_FORMAT
+				    "x+0x%" INTMAX_T_FORMAT "x exceeds"
+				    " file size 0x%" INTMAX_T_FORMAT "x",
+				    (uintmax_t)xsh_offset, (uintmax_t)xsh_size,
+				    (uintmax_t)fsize) == -1)
 					return -1;
 				return 0; 
 			}
@@ -1065,7 +1068,8 @@ doshn(struct magic_set *ms, int clazz, int swap, int fd, off_t off, int num,
 				    " for note");
 				return -1;
 			}
-			if (pread(fd, nbuf, xsh_size, xsh_offset) < (ssize_t)xsh_size) {
+			if (pread(fd, nbuf, xsh_size, xsh_offset) <
+			    (ssize_t)xsh_size) {
 				file_badread(ms);
 				free(nbuf);
 				return -1;

@@ -1,6 +1,6 @@
 
 #------------------------------------------------------------------------------
-# $File: pdp,v 1.10 2014/04/30 21:41:02 christos Exp $
+# $File: pdp,v 1.9 2013/04/19 20:11:43 christos Exp $
 # pdp:  file(1) magic for PDP-11 executable/object and APL workspace
 #
 0	lelong		0101555		PDP-11 single precision APL workspace

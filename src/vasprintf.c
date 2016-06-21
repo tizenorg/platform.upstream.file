@@ -633,11 +633,15 @@ int vasprintf(char **ptr, const char *format_string, va_list vargs)
 #ifdef va_copy
   va_copy (s.vargs, vargs);
 #else
-#ifdef __va_copy
+# ifdef __va_copy
   __va_copy (s.vargs, vargs);
-#else
+# else
+#  ifdef WIN32
+  s.vargs = vargs;
+#  else
   memcpy (&s.vargs, &vargs, sizeof (s.va_args));
-#endif /* __va_copy */
+#  endif /* WIN32 */
+# endif /* __va_copy */
 #endif /* va_copy */
   s.maxlen = (size_t)INT_MAX;
 

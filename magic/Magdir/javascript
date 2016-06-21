@@ -1,6 +1,6 @@
 
 #------------------------------------------------------------------------------
-# $File: javascript,v 1.1 2012/06/16 13:30:36 christos Exp $
+# $File: $
 # javascript:  magic for javascript and node.js scripts.
 #
 0	search/1/w	#!/bin/node		Node.js script text executable

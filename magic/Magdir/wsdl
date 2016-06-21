@@ -1,6 +1,6 @@
 
 #------------------------------------------------------------------------------
-# $File: wsdl,v 1.3 2013/02/06 14:18:52 christos Exp $
+# $File: wsdl,v 1.2 2013/02/05 15:20:47 christos Exp $
 # wsdl: PHP WSDL Cache, http://www.php.net/manual/en/book.soap.php
 # Cache format extracted from source:
 # http://svn.php.net/viewvc/php/php-src/trunk/ext/soap/php_sdl.c?revision=HEAD&view=markup
